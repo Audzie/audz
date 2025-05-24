@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Review Blog</title>
+  <link rel="icon" href="gambar/A.png">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .container {
+      width: 900px;
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 30px 0;
+    }
+
+    .logo {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 50px;
+    }
+
+    .logo span {
+      color: red;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+  .button-10 {
+  touch-action: manipulation;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 0.6em 1.2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.6em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.button-10::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b18597, 0 0.4em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.4em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.button-10:hover {
+  background: #ffe9e9;
+  transform: translate(0, 0.2em);
+}
+
+.button-10:hover::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0.3em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.3em, -1em);
+}
+
+.button-10:active {
+  background: #ffe9e9;
+  transform: translate(0em, 0.4em);
+}
+
+.button-10:active::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  transform: translate3d(0, 0, -1em);
+}
+
+    .button-10:hover::before {
+      box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+      transform: translate3d(0, 0.5em, -1em);
+    }
+
+    .button-10:active {
+      background: #ffe9e9;
+      transform: translate(0em, 0.75em);
+    }
+
+    .button-10:active::before {
+      box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+      transform: translate3d(0, 0, -1em);
+    }
+
+    .divider {
+      width: 100%;
+      height: 2px;
+      background: #333;
+      margin: 30px 0 20px;
+    }
+
+    .review-card {
+      background: linear-gradient(to bottom, #90e4b6, #fbe3e3);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-card.ungu {
+      background: linear-gradient(to bottom, #b8b5f6, #f4ebeb);
+    }
+
+    .review-header {
+      display: inline-block;
+      background: white;
+      padding: 6px 40px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .review-content {
+      text-align: center;
+    }
+
+    .review-content img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 20px;
+      height: 220px;
+      margin-left: -5px;
+      transition: transform 0.4s;
+    }
+
+    .review-content img:hover {
+      transform: scale(1.2);
+    }
+
+    .review-text {
+      margin: 20px 0;
+      color: #555;
+    }
+
+    footer {
+      background: #f1f1f1;
+      width: 100%;
+      margin-top: 60px;
+      padding: 40px 0 20px;
+      display: grid;
+      text-align: center;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .footer-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 210px;
+    }
+
+    .footer-column {
+      flex: 1;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li:hover {
+      text-decoration: underline;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 6px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .img1 {
+      transform: rotate(-10deg);
+    }
+
+    .img2 {
+      transform: rotate(10deg);
+    }
+
+    /* Discord */
+
+  .card1 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 90px 5px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+  margin-top: 25px;
+  margin-left: -170px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+.instagram {
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #cc39a4;
+}
+
+.card2 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 90px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+  margin-top: 25px;
+}
+
+.twitter {
+  margin-top: 1.5em;
+  margin-left: -.9em;
+  fill: #03A9F4;
+}
+
+.card3 {
+  margin-top: 3px;
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 5px 90px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+  margin-left: -170px;
+  margin-right: 3px;
+}
+
+.github {
+  margin-top: -.6em;
+  margin-left: 1.2em;
+}
+
+.card4 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 90px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.discord {
+  margin-top: -.9em;
+  margin-left: -1.2em;
+  fill: #8c9eff;
+}
+
+.card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background: linear-gradient(#f9ce34,#ee2a7b,#6228b7);
+}
+
+.card1:hover .instagram {
+  fill: white;
+}
+
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #03A9F4;
+}
+
+.card2:hover .twitter {
+  fill: white;
+}
+
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+}
+
+.card3:hover .github {
+  fill: white;
+}
+
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #8c9eff;
+}
+
+.card4:hover .discord {
+  fill: white;
+}
+
+/* Discord */
+
+a {
+  color: #333;
+}
+
+.logo img {
+        transition: transform 0.4s;
+      }
+
+      .logo img:hover {
+        transform: scale(1.23);
+      }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <a href="gif.html" target="_blank">
+          <img src="gambar/klee.png" alt="Logo">
+        </a>
+        <span>Food Review Blog</span>
+      </div>
+      <div class="nav-bar">
+        <button class="button-10" onclick="location.href='home.html'"><span class="text">Home</span></button>
+        <button class="button-10" onclick="location.href='restaurant.html'"><span class="text">Restaurant</span></button>
+        <button class="button-10" onclick="location.href='profile.html'"><span class="text">Profile</span></button>
+        <button class="button-10" onclick="confirmLogout()"><span class="text">Logout</span></button>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <div id="about" class="review-card">
+      <div class="review-header">Burger</div>
+      <div class="review-content">
+        <img class="img1" src="gambar/burger2.png" alt="Food 1">
+        <img class="img2" src="gambar/burger3.png" alt="Food 2">
+        <p class="review-text"><b>Burger adalah makanan cepat saji yang terdiri dari roti bulat (bun) yang diisi dengan daging patty, biasanya daging sapi, lalu ditambah isian seperti keju, selada, tomat, bawang, acar, dan berbagai saus seperti mayones atau saus tomat. Makanan ini dimakan langsung dengan tangan, praktis dan cocok disantap bersama kentang goreng atau minuman soda. Burger berasal dari Jerman (kota Hamburg), tapi menjadi sangat populer di Amerika dan kini digemari di seluruh dunia.</b></p>
+      </div>
+    </div>
+
+    <div id="restaurant" class="review-card ungu">
+      <div class="review-header">Pizza</div>
+      <div class="review-content">
+        <img class="img1" src="gambar/pizza1.png" alt="Food 3">
+        <img class="img2" src="gambar/pizza2.png" alt="Food 4">
+        <p class="review-text"><b>Pizza adalah makanan asal Italia yang terbuat dari adonan roti pipih yang dipanggang, lalu diberi topping seperti saus tomat, keju, daging, sayuran, dan berbagai bahan lainnya. Pizza biasanya dipotong berbentuk segitiga dan dimakan langsung dengan tangan. Makanan ini sangat populer di seluruh dunia karena rasanya yang lezat dan bisa disesuaikan dengan selera. Pizza juga cocok dinikmati bersama teman atau keluarga, baik di restoran maupun di rumah.</b></p>
+      </div>
+    </div>
+
+    <div id="profile" class="review-card">
+      <div class="review-header">Buritto</div>
+      <div class="review-content">
+        <img class="img1" src="gambar/buritto2.png" alt="Food 5">
+        <img class="img2" src="gambar/buritto1.png" alt="Food 6">
+        <p class="review-text"><b>Burrito adalah makanan khas Meksiko yang terdiri dari tortilla gandum (roti tipis) yang digulung dan diisi dengan berbagai bahan seperti nasi, kacang hitam atau merah, daging sapi atau ayam, keju, salsa, dan sering kali ditambah sayuran seperti selada, tomat, jagung, alpukat, dan sour cream. Makanan ini biasanya dimakan langsung dengan tangan, sehingga sangat praktis dan cocok untuk dibawa sebagai bekal. Menariknya, kata "burrito" dalam bahasa Spanyol berarti "keledai kecil", karena bentuknya yang menggulung menyerupai bungkusan yang biasa dibawa oleh keledai. Burrito sangat populer karena rasanya yang kaya dan isinya yang bisa disesuaikan dengan selera.        </b></p>
+      </div>
+    </div>
+
+  <div id="about2" class="review-card ungu">
+    <div class="review-header">Sandwich</div>
+    <div class="review-content">
+      <img class="img1" src="gambar/sandwich1.png" alt="Food 3">
+      <img class="img2" src="gambar/sandwich2.png" alt="Food 4">
+      <p class="review-text"><b>Sandwich adalah salah satu jenis makanan praktis yang terdiri dari dua potong roti yang di dalamnya diisi dengan berbagai bahan seperti daging, keju, telur, sayuran segar, dan saus. Makanan ini sangat populer di berbagai negara karena mudah dibuat, bisa dibawa ke mana-mana, dan cocok untuk sarapan, bekal sekolah, atau makan siang yang cepat. Selain rasanya yang enak, sandwich juga bisa disesuaikan dengan selera masing-masing, mulai dari isian sehat hingga yang lebih gurih dan berlemak.</b></p>
+    </div>
+  </div>
+
+<div id="profile" class="review-card">
+  <div class="review-header">Ice Cream</div>
+  <div class="review-content">
+    <img class="img1" src="gambar/ice2.png" alt="Food 5">
+    <img class="img2" src="gambar/ice1.png" alt="Food 6">
+    <p class="review-text"><b>Es krim adalah makanan penutup beku yang lembut dan manis, dibuat dari campuran susu, krim, gula, dan sering kali ditambahkan perasa seperti vanila, cokelat, atau buah-buahan, yang kemudian dikocok dan dibekukan hingga mencapai tekstur yang halus dan menyegarkan, sehingga menjadi pilihan favorit banyak orang untuk dinikmati di hari yang panas atau sebagai pelengkap momen bahagia.</b></p>
+  </div>
+</div>
+
+<div id="about2" class="review-card ungu">
+  <div class="review-header">Donut</div>
+  <div class="review-content">
+    <img class="img1" src="gambar/donut1.png" alt="Food 3">
+    <img class="img2" src="gambar/donut2.png" alt="Food 4">
+    <p class="review-text"><b>Donat adalah makanan manis yang digemari banyak orang, terbuat dari adonan lembut yang digoreng hingga keemasan, berbentuk cincin atau bulat berisi, lalu dihiasi beragam topping seperti cokelat, keju, atau gula halus yang membuatnya semakin menggugah selera dan cocok dinikmati kapan saja sebagai camilan yang mengenyangkan dan menyenangkan.</b></p>
+  </div>
+</div>
+
+<div id="profile" class="review-card">
+  <div class="review-header">Ramen</div>
+  <div class="review-content">
+    <img class="img1" src="gambar/ramen1.png" alt="Food 5">
+    <img class="img2" src="gambar/ramen2.png" alt="Food 6">
+    <p class="review-text"><b>Ramen di Jepang lebih dari sekadar mie—ini adalah budaya. Tiap daerah punya ciri khas, seperti miso ramen dari Hokkaido atau tonkotsu dari Kyushu. Kuahnya bisa berbasis shoyu, miso, shio, atau kaldu tulang babi yang kental.Topping-nya beragam: chashu, telur ajitama, menma, dan nori. Setiap kedai punya resep rahasia, membuat setiap mangkuk punya rasa khas tersendiri.</b></p>
+  </div>
+</div>
+
+<div id="about2" class="review-card ungu">
+  <div class="review-header">Next Update</div>
+  <div class="review-content">
+    <img class="img1" src="gambar/ice1.png" alt="Food 3">
+    <img class="img2" src="gambar/ice2.png" alt="Food 4">
+    <h1 class="review-text"><b>Next Update</b></h1>
+  </div>
+</div>
+
+    <!-- nambah content di atas habis div ini -> belegog --> </div>
+
+  <footer>
+    <div class="footer-container">
+
+      <!-- Discord -->
+       
+        <div class="main">
+          <div class="up">
+            <button class="card1" onclick="window.open('https://www.instagram.com/infomakanan.co/', '_blank')">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="30px" height="30px" fill-rule="nonzero" class="instagram"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><path d="M11.46875,5c-3.55078,0 -6.46875,2.91406 -6.46875,6.46875v9.0625c0,3.55078 2.91406,6.46875 6.46875,6.46875h9.0625c3.55078,0 6.46875,-2.91406 6.46875,-6.46875v-9.0625c0,-3.55078 -2.91406,-6.46875 -6.46875,-6.46875zM11.46875,7h9.0625c2.47266,0 4.46875,1.99609 4.46875,4.46875v9.0625c0,2.47266 -1.99609,4.46875 -4.46875,4.46875h-9.0625c-2.47266,0 -4.46875,-1.99609 -4.46875,-4.46875v-9.0625c0,-2.47266 1.99609,-4.46875 4.46875,-4.46875zM21.90625,9.1875c-0.50391,0 -0.90625,0.40234 -0.90625,0.90625c0,0.50391 0.40234,0.90625 0.90625,0.90625c0.50391,0 0.90625,-0.40234 0.90625,-0.90625c0,-0.50391 -0.40234,-0.90625 -0.90625,-0.90625zM16,10c-3.30078,0 -6,2.69922 -6,6c0,3.30078 2.69922,6 6,6c3.30078,0 6,-2.69922 6,-6c0,-3.30078 -2.69922,-6 -6,-6zM16,12c2.22266,0 4,1.77734 4,4c0,2.22266 -1.77734,4 -4,4c-2.22266,0 -4,-1.77734 -4,-4c0,-2.22266 1.77734,-4 4,-4z"></path></g></g></svg>
+            </button>
+            <button class="card2" onclick="window.open('https://x.com/infomakanan/', '_blank')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px" class="twitter"><path d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"></path></svg>
+            </button>
+          </div>
+          <div class="down">
+            <button class="card3" onclick="window.open('https://github.com/Audzie/', '_blank')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="github">    <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"></path></svg>
+            </button>
+            <button class="card4" onclick="window.open('https://discord.com/channels/1121403569648697354/1121412203984195624/', '_blank')">
+              <svg height="30px" width="30px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="discord"><path d="M40,12c0,0-4.585-3.588-10-4l-0.488,0.976C34.408,10.174,36.654,11.891,39,14c-4.045-2.065-8.039-4-15-4s-10.955,1.935-15,4c2.346-2.109,5.018-4.015,9.488-5.024L18,8c-5.681,0.537-10,4-10,4s-5.121,7.425-6,22c5.162,5.953,13,6,13,6l1.639-2.185C13.857,36.848,10.715,35.121,8,32c3.238,2.45,8.125,5,16,5s12.762-2.55,16-5c-2.715,3.121-5.857,4.848-8.639,5.815L33,40c0,0,7.838-0.047,13-6C45.121,19.425,40,12,40,12z M17.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C21,28.209,19.433,30,17.5,30z M30.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C34,28.209,32.433,30,30.5,30z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+      <!-- Discord -->
+      <div class="footer-column">
+        <h4>Locations</h4>
+        <ul>
+          <a href="https://www.google.com/maps/dir/-6.2455808,106.9252608/KFC+Kalimalang,+Jl.+Inspeksi+Saluran+Kalimalang+No.9,+Pd.+Bambu,+Kec.+Duren+Sawit,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13430/@-6.2470093,106.8976751,14z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x2e69f32deca9a7fb:0xbb8248ccfa311a35!2m2!1d106.907952!2d-6.2463573?entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoASAFQAw%3D%3D"><li><b>KFC</b></li></a>
+          <a href="https://www.google.com/maps/dir/-6.2455808,106.9252608/McDonald's+Duren+Sawit,+Jl.+Radin+Inten+II,+Duren+Sawit,+Kec.+Duren+Sawit,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13440/@-6.2383143,106.9172192,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x2e698cc85d1a4bb7:0xc493b6e1866e5f06!2m2!1d106.9229344!2d-6.2273355?entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoASAFQAw%3D%3D"><li><b>McD</b></li></a>
+          <a href="https://www.google.com/maps/dir//Pizza+Hut+Restoran,+Jl.+Raya+Pondok+Kelapa+B-14+No.+4,+RT.6%2FRW.4,+Pd.+Klp.,+Kec.+Duren+Sawit,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13450/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e698cc2c71eab55:0xb4b84f70e4912966?sa=X&ved=1t:57443&ictx=111"><li><b>Pizza Hut</b></li></a>
+          <a href="https://www.google.com/maps/dir//Burger+King+Duren+Sawit,+2,+Jl.+Kolonel+Sugiono+No.25,+RT.3%2FRW.3,+Duren+Sawit,+Kec.+Duren+Sawit,+Kota+Jakarta+Timur,+13440/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e698d1574bc03f9:0x10debbd6c9ee6651?sa=X&ved=1t:57443&ictx=111"><li><b>Burger King</b></li></a>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Links</h4>
+        <ul>
+          <a href="payment.html"><li><b>Payment</b></li></a>
+          <a href="about.html"><li><b>About Us</b></li></a>
+          <a href="restaurant.html"><li><b>Restaurant</b></li></a>
+          <a href="ketentuansyarat.html"><li><b>Ketentuan Syarat</b></li></a>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul>
+          <li>Terms & Conditions</li>
+          <li>Privacy Policy  </li>
+          <li>Cookie Policy</li>
+        </ul>
+      </div>
+    </div>
+
+  </footer>
+  <div class="footer-bottom">
+    &copy; 2025 kelompok1_. All Rights Reserved.
+  </div>
+
+  <script>
+    //log out
+    function confirmLogout() {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Kamu Yakin?',
+        text: 'Kamu bakalan keluar dari akunmu loh!',
+        showCancelButton: true,
+        confirmButtonText: 'Iya, Logout',
+        cancelButtonText: 'Batal',
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Simulasi logout
+          Swal.fire({
+            icon: 'Berhasil',
+            title: 'Logged Out!',
+            text: 'Cape ah kuar aja lu sono.',
+            confirmButtonText: 'Balik Ke Halaman Login',
+            allowOutsideClick: false,
+          }).then(() => {
+            // ke index.html
+            window.location.href = 'index.html';
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
